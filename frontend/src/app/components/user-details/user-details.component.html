@@ -1,0 +1,66 @@
+@if (viewMode){
+  @if (currentUser.user_id){
+  <h4>User</h4>
+  <div>
+    <label><strong>Nae:</strong></label> {{ currentUser.user_name }}
+  </div>
+  <div>
+    <label><strong>Age:</strong></label>
+    {{ currentUser.age }}
+  </div>
+  <div>
+    <label><strong>Address:</strong></label>
+    {{ currentUser.address }}
+  </div>
+
+  <a class="badge badge-warning" routerLink="/users/{{ currentUser.user_id }}">
+    Edit
+  </a>
+  } @else {<p>Please click on a User...</p>}
+} @else {
+  @if (currentUser.user_id) {
+  <div class="edit-form">
+    <h4>User</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentUser.user_name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input
+          type="text"
+          class="form-control"
+          id="age"
+          [(ngModel)]="currentUser.age"
+          name="age"
+        />
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          [(ngModel)]="currentUser.address"
+          name="address"
+        />
+      </div>
+    </form>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateUser()">
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+  } @else {<p>Cannot access this User...</p>}
+}
